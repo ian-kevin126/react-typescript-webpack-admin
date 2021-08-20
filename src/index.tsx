@@ -1,6 +1,14 @@
-import ReactDOM from 'react-dom'
-import './index.css'
+import ReactDOM from 'react-dom';
+import 'antd/dist/antd.less';
+import './styles/index.less';
+import store from './stores';
+import { Provider } from 'react-redux';
+import App from './App';
+import './mock';
 
-import App from './App'
-
-ReactDOM.render(<App />, document.getElementById('root'))
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+);

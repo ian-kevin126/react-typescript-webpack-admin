@@ -1,18 +1,18 @@
-import { FC } from 'react';
-import { Divider, Tree, TreeProps } from 'antd';
-import { DataNode } from 'rc-tree/lib/interface';
-import { css } from '@emotion/react';
+import { FC } from 'react'
+import { Divider, Tree, TreeProps } from 'antd'
+import { DataNode } from 'rc-tree/lib/interface'
+import { css } from '@emotion/react'
 
 export interface MySideOption extends DataNode {}
 
 export interface MyAsideProps extends Omit<TreeProps, 'treeData'> {
-  options?: MySideOption[];
-  header?: React.ReactNode;
-  footer?: React.ReactNode;
+  options?: MySideOption[]
+  header?: React.ReactNode
+  footer?: React.ReactNode
 }
 
-const MyAside: FC<MyAsideProps> = props => {
-  const { options, header, footer, ...rest } = props;
+const MyAside: FC<MyAsideProps> = (props) => {
+  const { options, header, footer, ...rest } = props
   return (
     <div css={styles}>
       {header && (
@@ -29,10 +29,10 @@ const MyAside: FC<MyAsideProps> = props => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MyAside;
+export default MyAside
 
 const styles = css`
   padding: 8px;
@@ -55,4 +55,4 @@ const styles = css`
       line-height: 28px;
     }
   }
-`;
+`

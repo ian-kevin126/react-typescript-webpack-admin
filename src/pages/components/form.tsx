@@ -1,19 +1,19 @@
-import { FC } from 'react';
-import MyButton from '../../components/basic/button';
-import MyForm from '../../components/core/form';
+import { FC } from 'react'
+import MyButton from '../../components/basic/button'
+import MyForm from '../../components/core/form'
 
 const tailLayout = {
-  wrapperCol: { offset: 8, span: 16 }
-};
+  wrapperCol: { offset: 8, span: 16 },
+}
 
 interface Data {
-  test: number;
+  test: number
 }
 
 const FormPage: FC = () => {
   const onFinish = (value: any) => {
-    console.log(value);
-  };
+    console.log(value)
+  }
 
   return (
     <MyForm<Data> onFinish={onFinish}>
@@ -24,7 +24,7 @@ const FormPage: FC = () => {
         </MyButton>
       </MyForm.Item>
     </MyForm>
-  );
-};
+  )
+}
 
-export default FormPage;
+export default FormPage

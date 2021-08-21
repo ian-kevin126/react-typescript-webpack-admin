@@ -1,92 +1,92 @@
-import { FC, useEffect, Suspense, useCallback, useState } from 'react';
-import { Layout, Drawer } from 'antd';
-import './index.less';
-import MenuComponent from './menu';
-import HeaderComponent from './header';
-import { getGlobalState } from '../../utils/getGloabal';
-import TagsView from './tagView';
-import SuspendFallbackLoading from './suspendFallbackLoading';
-import { getMenuList } from '../../api/layout.api';
-import { MenuList, MenuChild } from '../../interface/layout/menu.interface';
-import { useGuide } from '../guide/useGuide';
-import { Outlet, useLocation, useNavigate } from 'react-router';
-import { setUserItem } from '../../stores/user.store';
-import { useAppDispatch, useAppState } from '../../stores';
+import { FC, useEffect, Suspense, useCallback, useState } from 'react'
+import { Layout, Drawer } from 'antd'
+import './index.less'
+import MenuComponent from './menu'
+import HeaderComponent from './header'
+import { getGlobalState } from '../../utils/getGloabal'
+import TagsView from './tagView'
+import SuspendFallbackLoading from './suspendFallbackLoading'
+import { getMenuList } from '../../api/layout.api'
+import { MenuList, MenuChild } from '../../interface/layout/menu.interface'
+import { useGuide } from '../guide/useGuide'
+import { Outlet, useLocation, useNavigate } from 'react-router-dom'
+import { setUserItem } from '../../stores/user.store'
+import { useAppDispatch, useAppState } from '../../stores'
 
-const { Sider, Content } = Layout;
-const WIDTH = 992;
+const { Sider, Content } = Layout
+const WIDTH = 992
 
 const LayoutPage: FC = () => {
-  const [menuList, setMenuList] = useState<MenuList>([]);
-  const { device, collapsed, newUser } = useAppState(state => state.user);
-  const isMobile = device === 'MOBILE';
-  const dispatch = useAppDispatch();
-  const { driverStart } = useGuide();
-  const location = useLocation();
-  const navigate = useNavigate();
+  const [menuList, setMenuList] = useState<MenuList>([])
+  const { device, collapsed, newUser } = useAppState((state) => state.user)
+  const isMobile = device === 'MOBILE'
+  const dispatch = useAppDispatch()
+  const { driverStart } = useGuide()
+  const location = useLocation()
+  const navigate = useNavigate()
 
   useEffect(() => {
     if (location.pathname === '/') {
-      navigate('/dashboard');
+      navigate('/dashboard')
     }
-  }, [navigate, location]);
+  }, [navigate, location])
 
   const toggle = () => {
     dispatch(
       setUserItem({
-        collapsed: !collapsed
+        collapsed: !collapsed,
       })
-    );
-  };
+    )
+  }
 
   const initMenuListAll = (menu: MenuList) => {
-    const MenuListAll: MenuChild[] = [];
-    menu.forEach(m => {
+    const MenuListAll: MenuChild[] = []
+    menu.forEach((m) => {
       if (!m?.children?.length) {
-        MenuListAll.push(m);
+        MenuListAll.push(m)
       } else {
-        m?.children.forEach(mu => {
-          MenuListAll.push(mu);
-        });
+        m?.children.forEach((mu) => {
+          MenuListAll.push(mu)
+        })
       }
-    });
-    return MenuListAll;
-  };
+    })
+    return MenuListAll
+  }
 
   const fetchMenuList = useCallback(async () => {
-    const { status, result } = await getMenuList();
+    const { status, result } = await getMenuList()
     if (status) {
-      setMenuList(result);
+      setMenuList(result)
       dispatch(
         setUserItem({
-          menuList: initMenuListAll(result)
+          menuList: initMenuListAll(result),
         })
-      );
+      )
     }
-  }, [dispatch]);
+  }, [dispatch])
 
   useEffect(() => {
-    fetchMenuList();
-  }, [fetchMenuList]);
+    fetchMenuList()
+  }, [fetchMenuList])
 
   useEffect(() => {
     window.onresize = () => {
-      const { device } = getGlobalState();
-      const rect = document.body.getBoundingClientRect();
-      const needCollapse = rect.width < WIDTH;
+      const { device } = getGlobalState()
+      const rect = document.body.getBoundingClientRect()
+      const needCollapse = rect.width < WIDTH
       dispatch(
         setUserItem({
           device,
-          collapsed: needCollapse
+          collapsed: needCollapse,
         })
-      );
-    };
-  }, [dispatch]);
+      )
+    }
+  }, [dispatch])
 
   useEffect(() => {
-    newUser && driverStart();
+    newUser && driverStart()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [newUser]);
+  }, [newUser])
 
   return (
     <Layout className="layout-page">
@@ -94,7 +94,13 @@ const LayoutPage: FC = () => {
       <div>111</div>
       <Layout>
         {!isMobile ? (
-          <Sider className="layout-page-sider" trigger={null} collapsible collapsed={collapsed} breakpoint="md">
+          <Sider
+            className="layout-page-sider"
+            trigger={null}
+            collapsible
+            collapsed={collapsed}
+            breakpoint="md"
+          >
             <MenuComponent menuList={menuList} />
           </Sider>
         ) : (
@@ -124,7 +130,7 @@ const LayoutPage: FC = () => {
         </Content>
       </Layout>
     </Layout>
-  );
-};
+  )
+}
 
-export default LayoutPage;
+export default LayoutPage

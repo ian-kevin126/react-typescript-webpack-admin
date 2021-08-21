@@ -1,17 +1,17 @@
-import { Space, Tag } from 'antd';
-import MyButton from '../../components/basic/button';
-import MyTable from '../../components/core/table';
-import { FC } from 'react';
+import { Space, Tag } from 'antd'
+import MyButton from '../../components/basic/button'
+import MyTable from '../../components/core/table'
+import { FC } from 'react'
 
-const { Column, ColumnGroup } = MyTable;
+const { Column, ColumnGroup } = MyTable
 
 interface ColumnType {
-  key: string;
-  firstName: string;
-  lastName: string;
-  age: number;
-  address: string;
-  tags: string[];
+  key: string
+  firstName: string
+  lastName: string
+  age: number
+  address: string
+  tags: string[]
 }
 
 const data: ColumnType[] = [
@@ -21,7 +21,7 @@ const data: ColumnType[] = [
     lastName: 'Brown',
     age: 32,
     address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer']
+    tags: ['nice', 'developer'],
   },
   {
     key: '2',
@@ -29,7 +29,7 @@ const data: ColumnType[] = [
     lastName: 'Green',
     age: 42,
     address: 'London No. 1 Lake Park',
-    tags: ['loser']
+    tags: ['loser'],
   },
   {
     key: '3',
@@ -37,9 +37,9 @@ const data: ColumnType[] = [
     lastName: 'Black',
     age: 32,
     address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher']
-  }
-];
+    tags: ['cool', 'teacher'],
+  },
+]
 
 new Array(30).fill(undefined).forEach((item, index) => {
   data.push({
@@ -48,14 +48,18 @@ new Array(30).fill(undefined).forEach((item, index) => {
     lastName: 'Black' + index,
     age: 32 + index,
     address: 'Sidney No. 1 Lake Park' + index,
-    tags: ['cool', 'teacher']
-  });
-});
+    tags: ['cool', 'teacher'],
+  })
+})
 
 const TalbePage: FC = () => {
   return (
     <div className="aaa">
-      <MyTable<ColumnType> dataSource={data} rowKey={record => record.key} height="100%">
+      <MyTable<ColumnType>
+        dataSource={data}
+        rowKey={(record) => record.key}
+        height="100%"
+      >
         <ColumnGroup title="Name">
           <Column title="First Name" dataIndex="firstName" key="firstName" />
           <Column title="Last Name" dataIndex="lastName" key="lastName" />
@@ -68,7 +72,7 @@ const TalbePage: FC = () => {
           key="tags"
           render={(tags: string[]) => (
             <>
-              {tags.map(tag => (
+              {tags.map((tag) => (
                 <Tag color="blue" key={tag}>
                   {tag}
                 </Tag>
@@ -88,7 +92,7 @@ const TalbePage: FC = () => {
         />
       </MyTable>
     </div>
-  );
-};
+  )
+}
 
-export default TalbePage;
+export default TalbePage

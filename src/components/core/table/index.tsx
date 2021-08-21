@@ -1,40 +1,47 @@
-import TableColumn from '../table-column';
-import { Table, TableProps } from 'antd';
-import { css } from '@emotion/react';
+import TableColumn from '../table-column'
+import { Table, TableProps } from 'antd'
+import { css } from '@emotion/react'
 
 interface MyTableProps<T extends object> extends TableProps<T> {
-  height?: string;
+  height?: string
 }
 
 const MyTable = <T extends object = {}>(props: MyTableProps<T>) => {
-  const { height, pagination, ...rest } = props;
+  const { height, pagination, ...rest } = props
 
   const defaultPagination = {
     size: 'default',
     showQuickJumper: true,
     showSizeChanger: true,
     pageSizeOptions: ['10', '20', '50', '100', '200'],
-    defaultPageSize: 20
-  };
+    defaultPageSize: 20,
+  }
 
-  const combinedPagination = typeof pagination === 'object' ? { ...defaultPagination, ...pagination } : {};
+  const combinedPagination =
+    typeof pagination === 'object'
+      ? { ...defaultPagination, ...pagination }
+      : {}
 
   return (
     <div style={{ height }} css={styles}>
-      <Table<T> {...rest} scroll={{ x: 'max-content', y: '100%' }} pagination={combinedPagination} />
+      <Table<T>
+        {...rest}
+        scroll={{ x: 'max-content', y: '100%' }}
+        pagination={combinedPagination}
+      />
     </div>
-  );
-};
+  )
+}
 
 MyTable.defaultProps = {
   size: 'small',
-  height: 'auto'
-} as MyTableProps<any>;
+  height: 'auto',
+} as MyTableProps<any>
 
-MyTable.Column = TableColumn;
-MyTable.ColumnGroup = Table.ColumnGroup;
+MyTable.Column = TableColumn
+MyTable.ColumnGroup = Table.ColumnGroup
 
-export default MyTable;
+export default MyTable
 
 const styles = css`
   display: flex;
@@ -71,4 +78,4 @@ const styles = css`
       padding: 0 10px;
     }
   }
-`;
+`

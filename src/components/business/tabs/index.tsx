@@ -1,30 +1,34 @@
-import { FC } from 'react';
-import { TabPaneProps, Tabs, TabsProps } from 'antd';
-import { css } from '@emotion/react';
+import { FC } from 'react'
+import { TabPaneProps, Tabs, TabsProps } from 'antd'
+import { css } from '@emotion/react'
 
-const { TabPane } = Tabs;
+const { TabPane } = Tabs
 
 export interface MyTabsOption extends Omit<TabPaneProps, 'tab' | 'key'> {
-  label: string;
-  value: string | number;
+  label: string
+  value: string | number
 }
 
 export interface MyTabsProps extends TabsProps {
-  options: MyTabsOption[];
+  options: MyTabsOption[]
 }
 
-const BaseTabs: FC<MyTabsProps> = props => {
-  const { options, children, ...rest } = props;
+const BaseTabs: FC<MyTabsProps> = (props) => {
+  const { options, children, ...rest } = props
   return (
     <Tabs {...rest} css={styles}>
-      {options ? options.map(option => <TabPane {...option} tab={option.label} key={option.value} />) : children}
+      {options
+        ? options.map((option) => (
+            <TabPane {...option} tab={option.label} key={option.value} />
+          ))
+        : children}
     </Tabs>
-  );
-};
+  )
+}
 
-const MyTabs = Object.assign(BaseTabs, Tabs);
+const MyTabs = Object.assign(BaseTabs, Tabs)
 
-export default MyTabs;
+export default MyTabs
 
 const styles = css`
   background-color: #fff;
@@ -40,4 +44,4 @@ const styles = css`
       margin: 0 0 0 42px;
     }
   }
-`;
+`

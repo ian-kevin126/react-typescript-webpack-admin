@@ -1,63 +1,63 @@
-import { Space, Tag } from 'antd';
-import { getBusinessUserList } from '../../../api/business';
-import MyButton from '../../../components/basic/button';
-import { MySideOption } from '../../../components/business/aside';
-import MyPage, { MyPageTableOptions } from '../../../components/business/page';
-import { MyRadioCardssOption } from '../../../components/business/radio-cards';
-import { MyTabsOption } from '../../../components/business/tabs';
-import { BuniesssUser } from '../../../interface/business';
-import { FC } from 'react';
+import { Space, Tag } from 'antd'
+import { getBusinessUserList } from '../../../api/business'
+import MyButton from '../../../components/basic/button'
+import { MySideOption } from '../../../components/business/aside'
+import MyPage, { MyPageTableOptions } from '../../../components/business/page'
+import { MyRadioCardssOption } from '../../../components/business/radio-cards'
+import { MyTabsOption } from '../../../components/business/tabs'
+import { BuniesssUser } from '../../../interface/business'
+import { FC } from 'react'
 
-const { Item: SearchItem } = MyPage.MySearch;
+const { Item: SearchItem } = MyPage.MySearch
 
 const asideOptions: MySideOption[] = [
   {
     title: 'Tab-1',
-    key: 1
+    key: 1,
   },
   {
     title: 'Tab-2',
-    key: 2
+    key: 2,
   },
   {
     title: 'Tab-3',
-    key: 3
-  }
-];
+    key: 3,
+  },
+]
 
 const radioCardsOptions: MyRadioCardssOption[] = [
   {
     label: 'Options-1',
-    value: 1
+    value: 1,
   },
   {
     label: 'Options-2',
-    value: 2
+    value: 2,
   },
   {
     label: 'Options-3',
-    value: 3
-  }
-];
+    value: 3,
+  },
+]
 
 const tabsOptions: MyTabsOption[] = [
   {
     label: 'Tab-1',
-    value: 1
+    value: 1,
   },
   {
     label: 'Tab-2',
-    value: 2
-  }
-];
+    value: 2,
+  },
+]
 
 const tableColums: MyPageTableOptions<BuniesssUser> = [
   {
     title: 'Name',
     children: [
       { title: 'First Name', dataIndex: 'firstName', key: 'firstName' },
-      { title: 'Last Name', dataIndex: 'lastName', key: 'lastName' }
-    ]
+      { title: 'Last Name', dataIndex: 'lastName', key: 'lastName' },
+    ],
   },
   { title: 'Age', dataIndex: 'age', key: 'age' },
   { title: 'Address', dataIndex: 'address', key: 'address' },
@@ -67,13 +67,13 @@ const tableColums: MyPageTableOptions<BuniesssUser> = [
     key: 'tags',
     render: (tags, record) => (
       <>
-        {record.tags.map(tag => (
+        {record.tags.map((tag) => (
           <Tag color="blue" key={tag}>
             {tag}
           </Tag>
         ))}
       </>
-    )
+    ),
   },
   {
     title: 'Action',
@@ -83,9 +83,9 @@ const tableColums: MyPageTableOptions<BuniesssUser> = [
         <MyButton type="text">Invite {record.lastName}</MyButton>
         <MyButton type="text">Delete</MyButton>
       </Space>
-    )
-  }
-];
+    ),
+  },
+]
 
 const BusinessWithTabsPage: FC = () => {
   return (
@@ -112,7 +112,7 @@ const BusinessWithTabsPage: FC = () => {
       }
       tableOptions={tableColums}
     ></MyPage>
-  );
-};
+  )
+}
 
-export default BusinessWithTabsPage;
+export default BusinessWithTabsPage

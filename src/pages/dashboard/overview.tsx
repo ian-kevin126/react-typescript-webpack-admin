@@ -1,17 +1,25 @@
-import { FC } from 'react';
-import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd';
-import { InfoCircleOutlined } from '@ant-design/icons';
-import { ColProps } from 'antd/lib/col';
-import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg';
-import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg';
-import { ResponsiveContainer, AreaChart, Tooltip as RTooltip, Area, XAxis, BarChart, Bar } from 'recharts';
-import moment from 'moment';
-import { useLocale } from '../../locales';
+import { FC } from 'react'
+import { Row, Col, Card, Tooltip, Progress, Badge } from 'antd'
+import { InfoCircleOutlined } from '@ant-design/icons'
+import { ColProps } from 'antd/lib/col'
+import { ReactComponent as CaretUpIcon } from './assets/caret-up.svg'
+import { ReactComponent as CaretDownIcon } from './assets/caret-down.svg'
+import {
+  ResponsiveContainer,
+  AreaChart,
+  Tooltip as RTooltip,
+  Area,
+  XAxis,
+  BarChart,
+  Bar,
+} from 'recharts'
+import moment from 'moment'
+import { useLocale } from '../../locales'
 
 const data = new Array(14).fill(null).map((_, index) => ({
   name: moment().add(index, 'day').format('YYYY-MM-DD'),
-  number: Math.floor(Math.random() * 8 + 1)
-}));
+  number: Math.floor(Math.random() * 8 + 1),
+}))
 
 const wrapperCol: ColProps = {
   xs: 24,
@@ -19,18 +27,24 @@ const wrapperCol: ColProps = {
   md: 12,
   lg: 12,
   xl: 12,
-  xxl: 6
-};
-
-interface ColCardProps {
-  metaName: string;
-  metaCount: string;
-  body: React.ReactNode;
-  footer: React.ReactNode;
-  loading: boolean;
+  xxl: 6,
 }
 
-const ColCard: FC<ColCardProps> = ({ metaName, metaCount, body, footer, loading }) => {
+interface ColCardProps {
+  metaName: string
+  metaCount: string
+  body: React.ReactNode
+  footer: React.ReactNode
+  loading: boolean
+}
+
+const ColCard: FC<ColCardProps> = ({
+  metaName,
+  metaCount,
+  body,
+  footer,
+  loading,
+}) => {
   return (
     <Col {...wrapperCol}>
       <Card loading={loading} className="overview" bordered={false}>
@@ -45,32 +59,36 @@ const ColCard: FC<ColCardProps> = ({ metaName, metaCount, body, footer, loading 
         <div className="overview-footer">{footer}</div>
       </Card>
     </Col>
-  );
-};
+  )
+}
 
 interface TrendProps {
-  wow: string;
-  dod: string;
-  style?: React.CSSProperties;
+  wow: string
+  dod: string
+  style?: React.CSSProperties
 }
 
 const Trend: FC<TrendProps> = ({ wow, dod, style = {} }) => {
-  const { formatMessage } = useLocale();
+  const { formatMessage } = useLocale()
   return (
     <div className="trend" style={style}>
       <div className="trend-item">
-        <span className="trend-item-label">{formatMessage({ id: 'app.dashboard.overview.wowChange' })}</span>
+        <span className="trend-item-label">
+          {formatMessage({ id: 'app.dashboard.overview.wowChange' })}
+        </span>
         <span className="trend-item-text">{wow}</span>
         <CaretUpIcon color="#f5222d" />
       </div>
       <div className="trend-item">
-        <span className="trend-item-label">{formatMessage({ id: 'app.dashboard.overview.dodChange' })}</span>
+        <span className="trend-item-label">
+          {formatMessage({ id: 'app.dashboard.overview.dodChange' })}
+        </span>
         <span className="trend-item-text">{dod}</span>
         <CaretDownIcon color="#52c41a" />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const CustomTooltip: FC<any> = ({ active, payload, label }) =>
   active && (
@@ -79,11 +97,11 @@ const CustomTooltip: FC<any> = ({ active, payload, label }) =>
         <Badge color={payload[0].fill} /> {label} : {payload[0].value}
       </span>
     </div>
-  );
+  )
 
 interface FieldProps {
-  name: string;
-  number: string;
+  name: string
+  number: string
 }
 
 const Field: FC<FieldProps> = ({ name, number }) => (
@@ -91,10 +109,10 @@ const Field: FC<FieldProps> = ({ name, number }) => (
     <span className="field-label">{name}</span>
     <span className="field-number">{number} </span>
   </div>
-);
+)
 
 const Overview: FC<{ loading: boolean }> = ({ loading }) => {
-  const { formatMessage } = useLocale();
+  const { formatMessage } = useLocale()
 
   return (
     <Row gutter={[12, 12]}>
@@ -104,7 +122,12 @@ const Overview: FC<{ loading: boolean }> = ({ loading }) => {
         metaCount="¥ 126,560"
         // body={<Trend wow="12%" dod="12%" />}
         body={<div>111</div>}
-        footer={<Field name={formatMessage({ id: 'app.dashboard.overview.dailySales' })} number="￥12,423" />}
+        footer={
+          <Field
+            name={formatMessage({ id: 'app.dashboard.overview.dailySales' })}
+            number="￥12,423"
+          />
+        }
       />
       <ColCard
         loading={loading}
@@ -115,11 +138,21 @@ const Overview: FC<{ loading: boolean }> = ({ loading }) => {
             <AreaChart data={data}>
               <XAxis dataKey="name" hide />
               <RTooltip content={<CustomTooltip />} />
-              <Area strokeOpacity={0} type="monotone" dataKey="number" fill="#8E65D3" />
+              <Area
+                strokeOpacity={0}
+                type="monotone"
+                dataKey="number"
+                fill="#8E65D3"
+              />
             </AreaChart>
           </ResponsiveContainer>
         }
-        footer={<Field name={formatMessage({ id: 'app.dashboard.overview.dailySales' })} number="1234" />}
+        footer={
+          <Field
+            name={formatMessage({ id: 'app.dashboard.overview.dailySales' })}
+            number="1234"
+          />
+        }
       />
       <ColCard
         loading={loading}
@@ -130,22 +163,37 @@ const Overview: FC<{ loading: boolean }> = ({ loading }) => {
             <BarChart data={data}>
               <XAxis dataKey="name" hide />
               <RTooltip content={<CustomTooltip />} />
-              <Bar strokeOpacity={0} barSize={10} dataKey="number" stroke="#3B80D9" fill="#3B80D9" />
+              <Bar
+                strokeOpacity={0}
+                barSize={10}
+                dataKey="number"
+                stroke="#3B80D9"
+                fill="#3B80D9"
+              />
             </BarChart>
           </ResponsiveContainer>
         }
-        footer={<Field name={formatMessage({ id: 'app.dashboard.overview.conversionRate' })} number="60%" />}
+        footer={
+          <Field
+            name={formatMessage({
+              id: 'app.dashboard.overview.conversionRate',
+            })}
+            number="60%"
+          />
+        }
       />
       <ColCard
         loading={loading}
-        metaName={formatMessage({ id: 'app.dashboard.overview.operationalEffect' })}
+        metaName={formatMessage({
+          id: 'app.dashboard.overview.operationalEffect',
+        })}
         metaCount="8846"
         body={<Progress strokeColor="#58BFC1" percent={85} />}
         // footer={<Trend style={{ position: 'inherit' }} wow="12%" dod="12%" />}
         footer={<div>2222</div>}
       />
     </Row>
-  );
-};
+  )
+}
 
-export default Overview;
+export default Overview

@@ -1,23 +1,23 @@
-import { FC } from 'react';
-import { Typography } from 'antd';
-import MyAside, { MySideOption } from '../../components/business/aside';
+import { FC } from 'react'
+import { Typography } from 'antd'
+import MyAside, { MySideOption } from '../../components/business/aside'
 
-const { Title } = Typography;
+const { Title } = Typography
 
 const options: MySideOption[] = [
   {
     title: 'Tab-1',
-    key: 1
+    key: 1,
   },
   {
     title: 'Tab-2',
-    key: 2
+    key: 2,
   },
   {
     title: 'Tab-3',
-    key: 3
-  }
-];
+    key: 3,
+  },
+]
 
 const SidePage: FC = () => {
   return (
@@ -29,7 +29,7 @@ const SidePage: FC = () => {
         footer={<Title level={5}>Costom Footer</Title>}
       />
     </div>
-  );
-};
+  )
+}
 
-export default SidePage;
+export default SidePage

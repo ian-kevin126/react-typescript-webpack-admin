@@ -1,19 +1,19 @@
-import { Space, Tag } from 'antd';
-import { getBusinessUserList } from '../../../api/business';
-import MyButton from '../../../components/basic/button';
-import MyPage, { MyPageTableOptions } from '../../../components/business/page';
-import { BuniesssUser } from '../../../interface/business';
-import { FC } from 'react';
+import { Space, Tag } from 'antd'
+import { getBusinessUserList } from '../../../api/business'
+import MyButton from '../../../components/basic/button'
+import MyPage, { MyPageTableOptions } from '../../../components/business/page'
+import { BuniesssUser } from '../../../interface/business'
+import { FC } from 'react'
 
-const { Item: SearchItem } = MyPage.MySearch;
+const { Item: SearchItem } = MyPage.MySearch
 
 const tableColums: MyPageTableOptions<BuniesssUser> = [
   {
     title: 'Name',
     children: [
       { title: 'First Name', dataIndex: 'firstName', key: 'firstName' },
-      { title: 'Last Name', dataIndex: 'lastName', key: 'lastName' }
-    ]
+      { title: 'Last Name', dataIndex: 'lastName', key: 'lastName' },
+    ],
   },
   { title: 'Age', dataIndex: 'age', key: 'age' },
   { title: 'Address', dataIndex: 'address', key: 'address' },
@@ -23,13 +23,13 @@ const tableColums: MyPageTableOptions<BuniesssUser> = [
     key: 'tags',
     render: (tags, record) => (
       <>
-        {record.tags.map(tag => (
+        {record.tags.map((tag) => (
           <Tag color="blue" key={tag}>
             {tag}
           </Tag>
         ))}
       </>
-    )
+    ),
   },
   {
     title: 'Action',
@@ -39,9 +39,9 @@ const tableColums: MyPageTableOptions<BuniesssUser> = [
         <MyButton type="text">Invite {record.lastName}</MyButton>
         <MyButton type="text">Delete</MyButton>
       </Space>
-    )
-  }
-];
+    ),
+  },
+]
 
 const BusinessWithSearchPage: FC = () => {
   return (
@@ -64,7 +64,7 @@ const BusinessWithSearchPage: FC = () => {
       }
       tableOptions={tableColums}
     ></MyPage>
-  );
-};
+  )
+}
 
-export default BusinessWithSearchPage;
+export default BusinessWithSearchPage

@@ -1,21 +1,21 @@
-import MyForm, { MyFormProps } from '../../core/form';
-import MyButton from '../../basic/button';
-import { css } from '@emotion/react';
+import MyForm, { MyFormProps } from '../../core/form'
+import MyButton from '../../basic/button'
+import { css } from '@emotion/react'
 
 interface SearchProps<T> extends MyFormProps<T> {
-  onSearch: (values: T) => void;
+  onSearch: (values: T) => void
 }
 
 const BaseSearch = <T extends object>(props: SearchProps<T>) => {
-  const { children, onSearch, ...rest } = props;
-  const [form] = MyForm.useForm<T>();
+  const { children, onSearch, ...rest } = props
+  const [form] = MyForm.useForm<T>()
 
   const onSubmit = async () => {
-    const values = await form.validateFields();
+    const values = await form.validateFields()
     if (values) {
-      onSearch(values);
+      onSearch(values)
     }
-  };
+  }
 
   return (
     <div css={styles}>
@@ -30,14 +30,14 @@ const BaseSearch = <T extends object>(props: SearchProps<T>) => {
         </MyForm.Item>
       </MyForm>
     </div>
-  );
-};
+  )
+}
 
 const MySearch = Object.assign(BaseSearch, {
-  Item: MyForm.Item
-});
+  Item: MyForm.Item,
+})
 
-export default MySearch;
+export default MySearch
 
 const styles = css`
   padding: 20px;
@@ -45,4 +45,4 @@ const styles = css`
   .ant-form-item {
     margin-bottom: 20px;
   }
-`;
+`

@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Radio } from 'antd';
+import { FC } from 'react'
+import { Radio } from 'antd'
 
-const BaseRadio: FC = props => {
-  return <Radio {...props} />;
-};
+const BaseRadio: FC = (props) => {
+  return <Radio {...props} />
+}
 
-const MyRadio = Object.assign(Radio, BaseRadio);
+const MyRadio = Object.assign(Radio, BaseRadio)
 
-export default MyRadio;
+export default MyRadio

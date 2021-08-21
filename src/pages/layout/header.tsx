@@ -1,54 +1,59 @@
-import { FC } from 'react';
-import { LogoutOutlined, UserOutlined, MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
-import { Layout, Dropdown, Menu } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import HeaderNoticeComponent from './notice';
-import Avator from '../../assets/header/avator.jpeg';
-import { ReactComponent as LanguageSvg } from '../../assets/header/language.svg';
-import { ReactComponent as ZhCnSvg } from '../../assets/header/zh_CN.svg';
-import { ReactComponent as EnUsSvg } from '../../assets/header/en_US.svg';
-import { LocaleFormatter, useLocale } from '../../locales';
-import ReactSvg from '../../assets/logo/react.svg';
-import AntdSvg from '../../assets/logo/antd.svg';
-import { logoutAsync, setUserItem } from '../../stores/user.store';
-import { useAppDispatch, useAppState } from '../../stores';
+import { FC } from 'react'
+import {
+  LogoutOutlined,
+  UserOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined,
+} from '@ant-design/icons'
+import { Layout, Dropdown, Menu } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import HeaderNoticeComponent from './notice'
+import Avator from '../../assets/header/avator.jpeg'
+import { ReactComponent as LanguageSvg } from '../../assets/header/language.svg'
+import { ReactComponent as ZhCnSvg } from '../../assets/header/zh_CN.svg'
+import { ReactComponent as EnUsSvg } from '../../assets/header/en_US.svg'
+import { LocaleFormatter, useLocale } from '../../locales'
+import ReactSvg from '../../assets/logo/react.svg'
+import AntdSvg from '../../assets/logo/antd.svg'
+import { logoutAsync, setUserItem } from '../../stores/user.store'
+import { useAppDispatch, useAppState } from '../../stores'
 
-const { Header } = Layout;
+const { Header } = Layout
 
 interface HeaderProps {
-  collapsed: boolean;
-  toggle: () => void;
+  collapsed: boolean
+  toggle: () => void
 }
 
-type Action = 'userInfo' | 'userSetting' | 'logout';
+type Action = 'userInfo' | 'userSetting' | 'logout'
 
 const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
-  const { logged, locale, device } = useAppState(state => state.user);
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const { formatMessage } = useLocale();
+  const { logged, locale, device } = useAppState((state) => state.user)
+  const navigate = useNavigate()
+  const dispatch = useAppDispatch()
+  const { formatMessage } = useLocale()
 
   const onActionClick = async (action: Action) => {
     switch (action) {
       case 'userInfo':
-        return;
+        return
       case 'userSetting':
-        return;
+        return
       case 'logout':
-        const res = Boolean(await dispatch(logoutAsync()));
-        res && navigate('/login');
-        return;
+        const res = Boolean(await dispatch(logoutAsync()))
+        res && navigate('/login')
+        return
     }
-  };
+  }
 
   const toLogin = () => {
-    navigate('/login');
-  };
+    navigate('/login')
+  }
 
   const selectLocale = ({ key }: { key: any }) => {
-    dispatch(setUserItem({ locale: key }));
-    localStorage.setItem('locale', key);
-  };
+    dispatch(setUserItem({ locale: key }))
+    localStorage.setItem('locale', key)
+  }
   const menu = (
     <Menu>
       <Menu.Item key="1">
@@ -69,18 +74,24 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
         </span>
       </Menu.Item>
     </Menu>
-  );
+  )
   return (
     <Header className="layout-page-header">
       {device !== 'MOBILE' && (
         <div className="logo" style={{ width: collapsed ? 80 : 200 }}>
-          <img src={ReactSvg} alt="" style={{ marginRight: collapsed ? '2px' : '20px' }} />
+          <img
+            src={ReactSvg}
+            alt=""
+            style={{ marginRight: collapsed ? '2px' : '20px' }}
+          />
           <img src={AntdSvg} alt="" />
         </div>
       )}
       <div className="layout-page-header-main">
         <div onClick={toggle}>
-          <span id="sidebar-trigger">{collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}</span>
+          <span id="sidebar-trigger">
+            {collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+          </span>
         </div>
         <div className="actions">
           {/* <HeaderNoticeComponent /> */}
@@ -88,10 +99,18 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
             trigger={['click']}
             overlay={
               <Menu onClick={selectLocale}>
-                <Menu.Item style={{ textAlign: 'left' }} disabled={locale === 'zh_CN'} key="zh_CN">
+                <Menu.Item
+                  style={{ textAlign: 'left' }}
+                  disabled={locale === 'zh_CN'}
+                  key="zh_CN"
+                >
                   <ZhCnSvg /> 简体中文
                 </Menu.Item>
-                <Menu.Item style={{ textAlign: 'left' }} disabled={locale === 'en_US'} key="en_US">
+                <Menu.Item
+                  style={{ textAlign: 'left' }}
+                  disabled={locale === 'en_US'}
+                  key="en_US"
+                >
                   <EnUsSvg /> English
                 </Menu.Item>
               </Menu>
@@ -115,7 +134,7 @@ const HeaderComponent: FC<HeaderProps> = ({ collapsed, toggle }) => {
         </div>
       </div>
     </Header>
-  );
-};
+  )
+}
 
-export default HeaderComponent;
+export default HeaderComponent

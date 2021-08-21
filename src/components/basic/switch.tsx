@@ -1,10 +1,10 @@
-import { FC } from 'react';
-import { Switch } from 'antd';
+import { FC } from 'react'
+import { Switch } from 'antd'
 
 const BaseSwitch: FC = ({ children, ...props }) => {
-  return <Switch {...props} />;
-};
+  return <Switch {...props} />
+}
 
-const MySwitch = Object.assign(Switch, BaseSwitch);
+const MySwitch = Object.assign(Switch, BaseSwitch)
 
-export default MySwitch;
+export default MySwitch

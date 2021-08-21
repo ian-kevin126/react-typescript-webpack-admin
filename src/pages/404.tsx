@@ -1,10 +1,10 @@
-import { Button, Result } from 'antd';
-import { useNavigate } from 'react-router-dom';
-import { useLocale } from '../locales';
+import { Button, Result } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import { useLocale } from '../locales'
 
 const NotFoundPage: React.FC<{}> = () => {
-  const navigate = useNavigate();
-  const { formatMessage } = useLocale();
+  const navigate = useNavigate()
+  const { formatMessage } = useLocale()
   return (
     <Result
       status="404"
@@ -16,7 +16,7 @@ const NotFoundPage: React.FC<{}> = () => {
         </Button>
       }
     ></Result>
-  );
-};
+  )
+}
 
-export default NotFoundPage;
+export default NotFoundPage

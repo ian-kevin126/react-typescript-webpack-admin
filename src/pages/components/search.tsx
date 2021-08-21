@@ -1,11 +1,11 @@
-import { FC } from 'react';
-import MySearch from '../../components/business/search';
-import MyFormItem from '../../components/core/form-item';
+import { FC } from 'react'
+import MySearch from '../../components/business/search'
+import MyFormItem from '../../components/core/form-item'
 
 const SearchPage: FC = () => {
   const onSearch = (values: any) => {
-    console.log(values);
-  };
+    console.log(values)
+  }
 
   return (
     <MySearch onSearch={onSearch}>
@@ -22,11 +22,11 @@ const SearchPage: FC = () => {
         initialValue={1}
         options={[
           { label: '男', value: 1 },
-          { label: '女', value: 2 }
+          { label: '女', value: 2 },
         ]}
       />
     </MySearch>
-  );
-};
+  )
+}
 
-export default SearchPage;
+export default SearchPage

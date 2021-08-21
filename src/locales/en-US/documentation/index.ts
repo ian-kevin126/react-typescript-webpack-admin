@@ -12,11 +12,12 @@ export const en_US_documentation = {
     please feel free to ask, my contact information will be shown at the bottom of the article.
   `,
   'app.documentation.catalogue.title': 'Catalogue',
-  'app.documentation.catalogue.description': 'Click the catalogue to quickly reach the specified content',
+  'app.documentation.catalogue.description':
+    'Click the catalogue to quickly reach the specified content',
   'app.documentation.catalogue.list.layout': 'Layout',
   'app.documentation.catalogue.list.routes': 'Routes',
   'app.documentation.catalogue.list.request': 'HTTP Request',
   'app.documentation.catalogue.list.theme': 'Theme',
   'app.documentation.catalogue.list.typescript': 'Typescript',
-  'app.documentation.catalogue.list.international': 'International'
-};
+  'app.documentation.catalogue.list.international': 'International',
+}
